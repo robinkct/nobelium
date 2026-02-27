@@ -26,7 +26,7 @@ const BLOG = {
   notionPageId: process.env.NOTION_PAGE_ID, // DO NOT CHANGE THIS！！！
   notionAccessToken: process.env.NOTION_ACCESS_TOKEN, // Useful if you prefer not to make your database public
   analytics: {
-    provider: '', // Currently we support Google Analytics and Ackee, please fill with 'ga' or 'ackee', leave it empty to disable it.
+    provider: 'umami', // Currently we support Google Analytics, Ackee and Umami, please fill with 'ga', 'ackee' or 'umami', leave it empty to disable it.
     ackeeConfig: {
       tracker: '', // e.g 'https://ackee.craigary.net/tracker.js'
       dataAckeeServer: '', // e.g https://ackee.craigary.net , don't end with a slash
@@ -34,6 +34,11 @@ const BLOG = {
     },
     gaConfig: {
       measurementId: '' // e.g: G-XXXXXXXXXX
+    },
+    umamiConfig: {
+      scriptUrl: 'https://cloud.umami.is/script.js', // The link to your Umami script
+      websiteId: 'd65b7cc5-7173-4d5a-91cb-feb0a55140f2', // The ID of your website
+      domains: 'robinkct.com,brevity.robinkct.com' // The domains you want to track
     }
   },
   comment: {

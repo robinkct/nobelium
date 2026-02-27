@@ -28,6 +28,14 @@ const Scripts = () => {
           </Script>
         </>
       )}
+      {BLOG.analytics && BLOG.analytics.provider === 'umami' && (
+        <Script
+          async
+          src={BLOG.analytics.umamiConfig.scriptUrl}
+          data-website-id={BLOG.analytics.umamiConfig.websiteId}
+          data-domains={BLOG.analytics.umamiConfig.domains}
+        />
+      )}
     </>
   )
 }
