@@ -14,8 +14,9 @@ import Scripts from '@/components/Scripts'
 
 const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
+const Umami = dynamic(() => import('@/components/Umami'), { ssr: false })
 
-export default function MyApp ({ Component, pageProps, config, locale }) {
+export default function MyApp({ Component, pageProps, config, locale }) {
   return (
     <ConfigProvider value={config}>
       <Scripts />
@@ -29,6 +30,7 @@ export default function MyApp ({ Component, pageProps, config, locale }) {
               />
             )}
             {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ga' && <Gtag />}
+            {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'umami' && <Umami />}
             <Component {...pageProps} />
           </>
         </ThemeProvider>
