@@ -2,6 +2,8 @@ import 'prismjs/themes/prism.css'
 import 'react-notion-x/src/styles.css'
 import 'katex/dist/katex.min.css'
 import App from 'next/app'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import '@/styles/globals.css'
 import '@/styles/notion.css'
 import dynamic from 'next/dynamic'
@@ -17,6 +19,39 @@ const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
 const Umami = dynamic(() => import('@/components/Umami'), { ssr: false })
 
 export default function MyApp({ Component, pageProps, config, locale }) {
+  const router = useRouter()
+
+  useEffect(() => {
+    function onRouteChangeComplete() {
+      if (config?.analytics?.provider === 'umami' && window.umami) {
+        window.umami.track((props) => ({
+          ...props,
+          url: window.location.hostname + window.location.pathname,
+        }))
+      }
+    }
+
+    if (config?.analytics?.provider === 'umami') {
+      const trackUmami = () => {
+        if (window.umami) {
+          window.umami.track((props) => ({
+            ...props,
+            url: window.location.hostname + window.location.pathname,
+          }))
+        } else {
+          setTimeout(trackUmami, 300)
+        }
+      }
+      trackUmami()
+    }
+
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
+
+    return () => {
+      router.events.off('routeChangeComplete', onRouteChangeComplete)
+    }
+  }, [router.events, config])
+
   return (
     <ConfigProvider value={config}>
       <Scripts />

@@ -33,8 +33,8 @@ const Scripts = () => {
           async
           src={BLOG.analytics.umamiConfig.scriptUrl}
           data-website-id={BLOG.analytics.umamiConfig.websiteId}
-          data-domains={BLOG.analytics.umamiConfig.domains}
-          data-auto-track="false"
+          data-auto-track='false'
+          strategy='afterInteractive'
         />
       )}
     </>
