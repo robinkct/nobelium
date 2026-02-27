@@ -36,8 +36,8 @@ const BLOG = {
       measurementId: '' // e.g: G-XXXXXXXXXX
     },
     umamiConfig: {
-      scriptUrl: process.env.UMAMI_SCRIPT_URL || 'https://cloud.umami.is/script.js', // e.g: 'https://umami.example.com/script.js'
-      websiteId: process.env.UMAMI_WEBSITE_ID || '' // e.g: '12345678-1234-1234-1234-123456789012'
+      scriptUrl: process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL || process.env.UMAMI_SCRIPT_URL || 'https://cloud.umami.is/script.js', // e.g: 'https://umami.example.com/script.js'
+      websiteId: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || process.env.UMAMI_WEBSITE_ID || '' // e.g: '12345678-1234-1234-1234-123456789012'
     }
   },
   comment: {
